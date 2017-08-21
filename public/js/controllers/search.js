@@ -53,7 +53,8 @@ app.controller('mainCtrl', function ($scope, $http) {
                         lat: lat,
                         lng: lng
                     }
-                    className = getClassNameFromAqi(data.aqi)
+                    var className = getClassNameFromAqi(data.aqi)
+                    var textState = getClassNameFromAqi(data.aqi, false)
                     vm.map.infoWindow.template =  
                             `<div>
                                 <div class="color-bar ${className}">
@@ -65,6 +66,9 @@ app.controller('mainCtrl', function ($scope, $http) {
                                     <div >
                                         Aqi: ${data.aqi} 
                                     </div >
+                                    <div >
+                                        Status: ${textState}
+                                    </div >                                    
                                 </div>
                             </div>`
                     vm.zoom = 6
@@ -78,19 +82,19 @@ app.controller('mainCtrl', function ($scope, $http) {
     }
 
     // verificador del color segun nivel aqi
-    var getClassNameFromAqi = function(aqi){
+    var getClassNameFromAqi = function(aqi, className = true){
         if (aqi < 51){
-            return "good";
+            return  className ? "good": "Good";
         }else if( aqi < 101){
-            return 'moderate';
+            return  className ? "moderate": "Moderate";
         }else if( aqi < 151){
-            return 'unhealthy-for-groups';
+            return  className ? "unhealthy-for-groups": "Unhealthy for sensitive groups";
         }else if( aqi < 201){
-            return 'unhealthy-for-groups';
+            return  className ? "unhealthy": "Unhealthy";
         }else if( aqi < 301){
-            return 'unhealthy';
+            return  className ? "very-unhealthy": "Very unhealthy";
         }else{
-            return 'hazardous';
+            return  className ? "hazardous": "Hazardous";
         }
     }
 

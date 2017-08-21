@@ -13,7 +13,7 @@
 
 2. Entrar a la carpeta del proyecto
 ```
-    $ cd agenceTest
+    $ cd AgenceTest
 ```
 
 3. Construir la imagen de doker
