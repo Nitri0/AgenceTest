@@ -8,6 +8,9 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+#revisar redis-server
+RUN apk update && apk add redis
 
-CMD [ "npm", "run", "dev" ]
+EXPOSE 3000 6379
+
+CMD [ "npm", "run","dev" ]
