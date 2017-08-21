@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body(ng-app="app")
+      block content
+
+  script( src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js" )
+  script( src="https://rawgit.com/nmccready/angular-simple-logger/master/dist/angular-simple-logger.js" )
+  script( src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js" )
+  script( src="http://rawgit.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.js" )
+  script( src="/js/controllers/search.js" )
