@@ -13,18 +13,18 @@ app.controller('mainCtrl', function ($scope, $http) {
 
     //map data
     vm.map = {
-        center: {latitude: 40.1451, longitude: -99.6680 }, 
+        center: {latitude: 0, longitude: 0}, 
         zoom: 7,
         infoWindow:{
             options:{
                 position :{ 
-                    lat: 51.5286416,
-                    lng: -0.1015987
+                    lat: 0,
+                    lng: 0
                 },
 
                 show : true,
             },
-            template: '<div> example <div>'
+            template: ''
         }
     };
     vm.options = {scrollwheel: false};
@@ -32,11 +32,10 @@ app.controller('mainCtrl', function ($scope, $http) {
 
     vm.send = function(){
         vm.map.infoWindow.options.show = false;
-        var data = { city: vm.input }
-        $http.post(ENPOINT_URL, data)
+        vm.err = "";
+        $http.post(ENPOINT_URL, { city: vm.input })
                 .then(function(res){
                     var data = res.data.data
-                    vm.err = "";
                     vm.response = data
 
                     var lat = parseFloat(data.city.geo[0])
@@ -52,10 +51,8 @@ app.controller('mainCtrl', function ($scope, $http) {
                         lng: lng
                     }
                     className = getClassNameFromAqi(data.aqi)
-                    console.log(lat,lng)
                     vm.map.infoWindow.template =  
-                            `
-                            <div>
+                            `<div>
                                 <div class="color-bar ${className}">
                                 </div>
                                 <div class="text-info">
@@ -74,7 +71,6 @@ app.controller('mainCtrl', function ($scope, $http) {
                 function(err){
                     vm.response = ""
                     vm.err = err.data.data
-                    console.log()
                 })
     }
 
