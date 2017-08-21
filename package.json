@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm-run-all --parallel start",
+    "dev": "npm-run-all --parallel start redis",
     "start": "nodemon ./bin/www localhost 3000",
     "redis": "redis-server"
   },
@@ -13,11 +13,13 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-redis-cache": "^1.0.0",
     "jade": "~1.11.0",
+    "moment": "^2.18.1",
     "morgan": "~1.8.1",
+    "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
     "redis": "^2.8.0",
-    "redis-server": "^1.1.0",
     "serve-favicon": "~2.4.2",
     "stylus": "0.54.5",
     "webpack": "^3.5.5"
@@ -27,6 +29,7 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1"
+    "babel-preset-stage-2": "^6.24.1",
+    "jsdoc": "^3.5.4"
   }
 }
