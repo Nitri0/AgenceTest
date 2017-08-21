@@ -8,7 +8,6 @@ RUN npm install
 
 COPY . .
 
-#revisar redis-server
 RUN apk update && apk add redis
 
 EXPOSE 3000 6379

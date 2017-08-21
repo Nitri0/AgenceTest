@@ -4,8 +4,10 @@ block content
   #content(ng-controller="mainCtrl as ctrl")
     input#country(name="country" ng-model="ctrl.input")
     button(ng-click='ctrl.send()') Get Data
-    p(style="{color:red}" ng-if="ctrl.err" ) {{ctrl.err}}
+    p(style={"color":"red"} ng-if="ctrl.err" ) {{ctrl.err}}
 
+    #map(ng-if="ctrl.loading") cargando... 
+      
     #map(ng-if="ctrl.response")
       #map-content(style={'width':"100%", 'height':"300px" })
         <ui-gmap-google-map center="ctrl.map.center" zoom="ctrl.map.zoom" draggable="false" options="ctrl.options">

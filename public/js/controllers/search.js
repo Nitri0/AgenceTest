@@ -9,9 +9,9 @@ app.controller('mainCtrl', function ($scope, $http) {
     vm.input = "lima";
     vm.response = "";
     vm.err = "";
+    vm.loading = false;
 
-
-    //map data
+    // Data
     vm.map = {
         center: {latitude: 0, longitude: 0}, 
         zoom: 7,
@@ -30,11 +30,14 @@ app.controller('mainCtrl', function ($scope, $http) {
     vm.options = {scrollwheel: false};
 
 
+    // Envio de string
     vm.send = function(){
+        vm.loading =  true
         vm.map.infoWindow.options.show = false;
         vm.err = "";
         $http.post(ENPOINT_URL, { city: vm.input })
                 .then(function(res){
+                    vm.loading =  false
                     var data = res.data.data
                     vm.response = data
 
@@ -67,13 +70,14 @@ app.controller('mainCtrl', function ($scope, $http) {
                     vm.zoom = 6
                     vm.map.infoWindow.options.show = true;
                 },
-                // error 
                 function(err){
+                    vm.loading =  false
                     vm.response = ""
                     vm.err = err.data.data
                 })
     }
 
+    // verificador del color segun nivel aqi
     var getClassNameFromAqi = function(aqi){
         if (aqi < 51){
             return "good";
